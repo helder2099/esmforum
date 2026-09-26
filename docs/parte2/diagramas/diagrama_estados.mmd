@@ -1,0 +1,9 @@
+stateDiagram-v2 
+    [*] --> Rascunho : Criar 
+    Rascunho --> Publicada : Publicar 
+    Publicada --> Respondida : Receber resposta 
+    Publicada --> Fechada : Fechar 
+    Respondida --> Fechada : Fechar 
+    Fechada --> [*] : Arquivar 
+    Publicada --> Excluida : Excluir 
+    Excluida --> [*] 

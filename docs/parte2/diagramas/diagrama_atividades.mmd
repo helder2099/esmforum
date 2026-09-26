@@ -1,0 +1,12 @@
+flowchart TD 
+    A([Inicio]) --> B[Usuario digita palavra-chave] 
+    B --> C{Palavra vazia?} 
+    C -->|Sim| D[Exibe erro] 
+    D --> B 
+    C -->|Nao| E[Frontend envia requisicao] 
+    E --> F[API consulta banco] 
+    F --> G{Resultados?} 
+    G -->|Sim| H[Exibe lista] 
+    G -->|Nao| I[Mensagem vazia] 
+    H --> J([Fim]) 
+    I --> J 

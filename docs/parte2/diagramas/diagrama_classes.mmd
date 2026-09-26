@@ -1,0 +1,12 @@
+classDiagram 
+    class Usuario 
+    class Pergunta 
+    class Resposta 
+    class Tag 
+    class Voto 
+    Usuario "1" -- "*" Pergunta 
+    Usuario "1" -- "*" Resposta 
+    Usuario "1" -- "*" Voto 
+    Pergunta "1" -- "*" Resposta 
+    Pergunta "1" -- "*" Voto 
+    Pergunta "*" -- "*" Tag 

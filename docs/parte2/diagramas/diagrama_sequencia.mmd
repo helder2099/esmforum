@@ -1,0 +1,11 @@
+sequenceDiagram
+    actor U as Usuario
+    participant F as Frontend
+    participant A as API
+    participant B as Banco
+    U->>F: Clica em upvote
+    F->>A: POST /voto
+    A->>B: INSERT INTO votos
+    B-->>A: OK
+    A-->>F: 200 OK
+    F-->>U: Atualiza contador
