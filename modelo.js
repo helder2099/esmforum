@@ -10,7 +10,7 @@ function reconfig_bd(mock_bd) {
 // { id_pergunta: int
 //   texto: int
 //   id_usuario: int
-//   num_respostas: int 
+//   num_respostas: int
 // }
 function listar_perguntas() {
   const perguntas = bd.queryAll('select * from perguntas', []);
@@ -43,6 +43,22 @@ function get_num_respostas(id_pergunta) {
   return resultado['count(*)'];
 }
 
+// buscar_perguntas retorna um array de objetos com os seguintes campos:
+// { id_pergunta: int
+//   texto: string
+//   id_usuario: int
+//   num_respostas: int
+// }
+function buscar_perguntas(palavra) {
+  if (!palavra || palavra.trim() === '') {
+    return listar_perguntas();
+  }
+  const termo = '%' + palavra + '%';
+  const perguntas = bd.queryAll('select * from perguntas where texto LIKE ?', [termo]);
+  perguntas.forEach(pergunta => pergunta['num_respostas'] = get_num_respostas(pergunta['id_pergunta']));
+  return perguntas;
+}
+
 exports.reconfig_bd = reconfig_bd;
 exports.listar_perguntas = listar_perguntas;
 exports.cadastrar_pergunta = cadastrar_pergunta;
@@ -50,3 +66,4 @@ exports.cadastrar_resposta = cadastrar_resposta;
 exports.get_pergunta = get_pergunta;
 exports.get_respostas = get_respostas;
 exports.get_num_respostas = get_num_respostas;
+exports.buscar_perguntas = buscar_perguntas;

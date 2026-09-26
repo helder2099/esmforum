@@ -58,6 +58,17 @@ app.post('/respostas', (req, res) => {
   } 
 });
 
+app.get('/perguntas/busca', (req, res) => {
+  try {
+    const palavra = req.query.q;
+    const perguntas = modelo.buscar_perguntas(palavra);
+    res.json(perguntas);
+  }
+  catch(erro) {
+    res.status(500).json(erro.message);
+  }
+});
+
 // espera e trata requisições de clientes
 const port = 5000;
 app.listen(port, 'localhost', () => {
