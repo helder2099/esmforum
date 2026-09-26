@@ -58,6 +58,7 @@ app.post('/respostas', (req, res) => {
   } 
 });
 
+
 app.get('/perguntas/busca', (req, res) => {
   try {
     const palavra = req.query.q;
@@ -68,7 +69,6 @@ app.get('/perguntas/busca', (req, res) => {
     res.status(500).json(erro.message);
   }
 });
-
 // espera e trata requisições de clientes
 const port = 5000;
 app.listen(port, 'localhost', () => {
