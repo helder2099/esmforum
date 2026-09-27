@@ -1,0 +1,27 @@
+classDiagram
+    class Subject {
+        <<interface>>
+        +addObserver(observer)
+        +removeObserver(observer)
+        +notifyObservers()
+    }
+    class Observer {
+        <<interface>>
+        +update(pergunta, resposta)
+    }
+    class PerguntaSubject {
+        -List~Observer~ observers
+        +addObserver(observer)
+        +removeObserver(observer)
+        +notifyObservers()
+    }
+    class NotificacaoEmailObserver {
+        +update(pergunta, resposta)
+    }
+    class NotificacaoAppObserver {
+        +update(pergunta, resposta)
+    }
+    Subject <|.. PerguntaSubject
+    Observer <|.. NotificacaoEmailObserver
+    Observer <|.. NotificacaoAppObserver
+    PerguntaSubject --> Observer : notifica

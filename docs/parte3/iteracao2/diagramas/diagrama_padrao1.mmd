@@ -1,0 +1,23 @@
+classDiagram
+    class BuscaStrategy {
+        <<interface>>
+        +buscar(palavra) List~Pergunta~
+    }
+    class BuscaPorTituloStrategy {
+        +buscar(palavra) List~Pergunta~
+    }
+    class BuscaPorCorpoStrategy {
+        +buscar(palavra) List~Pergunta~
+    }
+    class BuscaCompletaStrategy {
+        +buscar(palavra) List~Pergunta~
+    }
+    class BuscaService {
+        -BuscaStrategy strategy
+        +setStrategy(strategy)
+        +buscar(palavra) List~Pergunta~
+    }
+    BuscaStrategy <|.. BuscaPorTituloStrategy
+    BuscaStrategy <|.. BuscaPorCorpoStrategy
+    BuscaStrategy <|.. BuscaCompletaStrategy
+    BuscaService --> BuscaStrategy : usa

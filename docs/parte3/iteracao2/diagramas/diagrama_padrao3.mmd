@@ -1,0 +1,27 @@
+classDiagram
+    class NotificacaoFactory {
+        <<interface>>
+        +criarNotificacao() Notificacao
+    }
+    class NotificacaoEmailFactory {
+        +criarNotificacao() Notificacao
+    }
+    class NotificacaoPushFactory {
+        +criarNotificacao() Notificacao
+    }
+    class Notificacao {
+        <<interface>>
+        +enviar(destinatario, mensagem)
+    }
+    class NotificacaoEmail {
+        +enviar(destinatario, mensagem)
+    }
+    class NotificacaoPush {
+        +enviar(destinatario, mensagem)
+    }
+    NotificacaoFactory <|.. NotificacaoEmailFactory
+    NotificacaoFactory <|.. NotificacaoPushFactory
+    NotificacaoEmailFactory --> NotificacaoEmail : cria
+    NotificacaoPushFactory --> NotificacaoPush : cria
+    Notificacao <|.. NotificacaoEmail
+    Notificacao <|.. NotificacaoPush

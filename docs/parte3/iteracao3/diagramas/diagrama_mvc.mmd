@@ -1,0 +1,26 @@
+flowchart LR
+    subgraph Controller
+        C[BuscaController]
+    end
+    
+    subgraph Service
+        S[BuscaService]
+    end
+    
+    subgraph Repository
+        R[PerguntaRepository]
+    end
+    
+    subgraph Model
+        M[Pergunta]
+    end
+    
+    subgraph Database
+        D[(SQLite)]
+    end
+    
+    C -->|chama| S
+    S -->|chama| R
+    R -->|consulta| D
+    R -->|retorna| M
+    M -->|JSON| C

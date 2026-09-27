@@ -1,0 +1,23 @@
+flowchart TB
+    subgraph Frontend[Frontend - React]
+        UI[Interface do Usuario]
+        ROUTER[Roteamento]
+        API_CLIENT[Cliente HTTP]
+    end
+    
+    subgraph Backend[Backend - Node.js/Express]
+        ROUTES[Rotas - server.js]
+        MODELO[Modelo - modelo.js]
+        BD_UTILS[BD Utils - bd_utils.js]
+    end
+    
+    subgraph BD[Banco de Dados]
+        DB[(SQLite)]
+    end
+    
+    UI --> ROUTER
+    ROUTER --> API_CLIENT
+    API_CLIENT -->|HTTP/JSON| ROUTES
+    ROUTES --> MODELO
+    MODELO --> BD_UTILS
+    BD_UTILS --> DB
